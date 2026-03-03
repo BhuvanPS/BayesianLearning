@@ -55,3 +55,23 @@ bucketize <- function(x) {
 # Apply bucketization to the column 2
 data$X2 <- bucketize(data$X2)
 head(data)
+
+#--------------------------------
+# Question 2 a
+# Load the dataset
+heart_data <- read.csv("heart.csv", header = TRUE)
+# Display the first few rows of the dataset
+head(heart_data)
+# Add new column "BloodPressureCategory" based on "BloodPressure"
+heart_data$BloodPressureCategory <- ifelse(heart_data$trestbps > 120, 
+  "High", "Normal"
+)
+# Add new column "CholesterolCategory" based on "Cholesterol"
+heart_data$CholesterolCategory <- ifelse(heart_data$chol > 200,
+  "High", "Normal"
+)
+
+# Contigency table for Blood Pressure Category and Cholesterol Category
+table(heart_data$BloodPressureCategory, heart_data$CholesterolCategory,
+  dnn = c("Blood Pressure Category", "Cholesterol Category")
+)
