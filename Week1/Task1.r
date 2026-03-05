@@ -22,7 +22,7 @@ minmax <- function(x, min_val, max_val) {
       x[i] <- max_val
     }
   }
-  return(x)
+  x
 }
 # Apply min-max normalization to the column 1
 data$X4 <- minmax(data$X4, 10, 25)
@@ -41,7 +41,7 @@ head(data)
 # Question 1 d
 # Bucketization function
 bucketize <- function(x) {
-  for (i in 1:length(x)) {
+  for (i in seq_along(x)) {
     if (x[i] > 175) {
       x[i] <- "Tall"
     } else if (x[i] > 160) {
@@ -75,3 +75,4 @@ heart_data$CholesterolCategory <- ifelse(heart_data$chol > 200,
 table(heart_data$BloodPressureCategory, heart_data$CholesterolCategory,
   dnn = c("Blood Pressure Category", "Cholesterol Category")
 )
+
